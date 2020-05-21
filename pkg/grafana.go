@@ -29,13 +29,17 @@ var AMT RemainingAmt
 
 func init(){
 	AMT.Target = "amount"
+	//comment if need to use graph
+	AMT.Datapoint = make([]details,1)
 }
 
 func InitRemainingAMT(){
 	for {
 		time.Sleep(3 * time.Second)
 		remainingAMT := GetRemainingAmt()
-		AMT.Datapoint = append(AMT.Datapoint, details{remainingAMT, time.Now().UnixNano() / 1000000})
+
+		//AMT.Datapoint = append(AMT.Datapoint, details{remainingAMT, time.Now().UnixNano() / 1000000}) this for graph
+		AMT.Datapoint[0]=details{remainingAMT, time.Now().UnixNano() / 1000000}
 	}
 }
 
